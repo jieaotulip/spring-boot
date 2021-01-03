@@ -17,11 +17,11 @@
 	</properties>
 	<modules>
 		<!-- Deployment tests are slow so don't include by default -->
-		<module>spring-boot-smoke-tests-invoker</module>
-		<module>spring-boot-integration-tests</module>
+		<!--<module>spring-boot-smoke-tests-invoker</module>
+		<module>spring-boot-integration-tests</module>-->
+		<module>spring-boot-demo-tests</module>
 	</modules>
 	<profiles>
-		<!-- M2E profile to allow easy import into Eclipse -->
 		<profile>
 			<id>m2e</id>
 			<activation>
@@ -34,6 +34,7 @@
 				<module>spring-boot-smoke-tests-invoker</module>
 				<module>spring-boot-integration-tests</module>
 				<module>spring-boot-deployment-tests</module>
+				<module>spring-boot-demo-tests</module>
 			</modules>
 		</profile>
 	</profiles>

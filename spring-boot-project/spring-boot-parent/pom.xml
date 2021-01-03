@@ -19,7 +19,7 @@
 	</organization>
 	<properties>
 		<main.basedir>${basedir}/../..</main.basedir>
-		<disable.checks>false</disable.checks>
+		<disable.checks>true</disable.checks>
 		<git.url>https://github.com/spring-projects/spring-boot</git.url>
 		<git.connection>scm:git:git://github.com/spring-projects/spring-boot.git</git.connection>
 		<git.developerConnection>scm:git:ssh://git@github.com/spring-projects/spring-boot.git</git.developerConnection>
@@ -229,7 +229,6 @@
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
-		<!-- Generally Useful Test Dependencies -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
@@ -392,7 +391,7 @@
 					<parameters>true</parameters>
 				</configuration>
 			</plugin>
-			<plugin>
+			<!--<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
 				<executions>
@@ -440,7 +439,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin>-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>

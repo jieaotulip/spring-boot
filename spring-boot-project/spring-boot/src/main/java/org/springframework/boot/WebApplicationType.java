@@ -18,8 +18,8 @@ package org.springframework.boot;
 
 import org.springframework.util.ClassUtils;
 
-/**
- * An enumeration of possible types of web application.
+/**web 应用类型
+ * <p> An enumeration of possible types of web application.
  *
  * @author Andy Wilkinson
  * @author Brian Clozel
@@ -27,20 +27,20 @@ import org.springframework.util.ClassUtils;
  */
 public enum WebApplicationType {
 
-	/**
-	 * The application should not run as a web application and should not start an
+	/**非内嵌的 Web 应用
+	 * <p> The application should not run as a web application and should not start an
 	 * embedded web server.
 	 */
 	NONE,
 
-	/**
-	 * The application should run as a servlet-based web application and should start an
+	/**内嵌的 Servlet Web 应用。例如说，Spring MVC 。
+	 * <p> The application should run as a servlet-based web application and should start an
 	 * embedded servlet web server.
 	 */
 	SERVLET,
 
-	/**
-	 * The application should run as a reactive web application and should start an
+	/**内嵌的 Reactive Web 应用。例如说，Spring Webflux 。
+	 * <p> The application should run as a reactive web application and should start an
 	 * embedded reactive web server.
 	 */
 	REACTIVE;
@@ -58,16 +58,31 @@ public enum WebApplicationType {
 
 	private static final String REACTIVE_APPLICATION_CONTEXT_CLASS = "org.springframework.boot.web.reactive.context.ReactiveWebApplicationContext";
 
+	/**
+	 * 从 classpath 上，判断 Web 应用类型。推断容器类型
+	 * @return
+	 */
 	static WebApplicationType deduceFromClasspath() {
-		if (ClassUtils.isPresent(WEBFLUX_INDICATOR_CLASS, null) && !ClassUtils.isPresent(WEBMVC_INDICATOR_CLASS, null)
+		/**
+		 * {@link WebApplicationType#REACTIVE} 类型
+		 */
+		if (ClassUtils.isPresent(WEBFLUX_INDICATOR_CLASS, null)
+				&& !ClassUtils.isPresent(WEBMVC_INDICATOR_CLASS, null)
 				&& !ClassUtils.isPresent(JERSEY_INDICATOR_CLASS, null)) {
 			return WebApplicationType.REACTIVE;
 		}
+		/**
+		 * {@link WebApplicationType#NONE} 类型
+		 */
 		for (String className : SERVLET_INDICATOR_CLASSES) {
 			if (!ClassUtils.isPresent(className, null)) {
 				return WebApplicationType.NONE;
 			}
 		}
+		/**
+		 * {@link WebApplicationType#SERVLET} 类型
+		 * 这样判断的原因是，引入 Spring MVC 时，如果是内嵌的 Web 应用，会引入 Servlet 类。
+		 */
 		return WebApplicationType.SERVLET;
 	}
 

@@ -21,8 +21,9 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.io.support.SpringFactoriesLoader;
 
-/**
- * Listener for the {@link SpringApplication} {@code run} method.
+/**SpringApplication 运行的监听器接口，实现类
+ * {@link org.springframework.boot.context.event.EventPublishingRunListener}
+ * <p> Listener for the {@link SpringApplication} {@code run} method.
  * {@link SpringApplicationRunListener}s are loaded via the {@link SpringFactoriesLoader}
  * and should declare a public constructor that accepts a {@link SpringApplication}
  * instance and a {@code String[]} of arguments. A new
@@ -35,8 +36,8 @@ import org.springframework.core.io.support.SpringFactoriesLoader;
  */
 public interface SpringApplicationRunListener {
 
-	/**
-	 * Called immediately when the run method has first started. Can be used for very
+	/**在run方法第一次启动时立即调用。可以用于非常早期的初始化。
+	 * <p> Called immediately when the run method has first started. Can be used for very
 	 * early initialization.
 	 */
 	default void starting() {
